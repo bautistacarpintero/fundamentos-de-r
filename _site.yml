@@ -1,0 +1,7 @@
+name: "Práctico1"
+output_dir: "."
+navbar:
+  title: "Cientificos de Datos TP1 - Ejercicio Práctico IO"
+  left:
+    - text: "Home"
+      href: index.html
