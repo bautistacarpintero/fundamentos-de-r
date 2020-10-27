@@ -1,5 +1,6 @@
 ---
-title: Fundamentos de R 
+title: Fundamentos de R
+author: Ingeniería de Sistemas, Licenciatura en Tecnología Ambiental y Profesorado de Matemáticas.
 
 output:
   prettydoc::html_pretty:
@@ -12,6 +13,142 @@ output:
 > en el contexto de la catedra Probabilidad y Estadistica
 
 
-## Titulo:
+# Introducion
 
-contenido contenido contenido contenido contenido contenido contenido contenido contenido contenido contenido 
+El lenguaje de programación R se integra bien con otros lenguajes de programación para realizar tareas de análisis de datos computacionalmente intensivas (alto consumo de recursos como CPU y RAM). Además, puede integrarse con distintas bases de datos y existen bibliotecas que facilitan su utilización desde lenguajes de programación interpretados como Perl y Python.
+
+R es algo más que un lenguaje de programación. El usuario no programa propiamente, sino que utiliza R interactivamente: ensaya, se equivoca y vuelve a probar. Solo cuando termina el ciclo y el resultado es satisfactorio, produce un resultado final que, generalmente, no es un programa, sino un informe.
+
+## Caracteristicas
+
+R es un lenguaje de programación interpretado es decir que no se compila para generar un ejecutable, sino que las sentencias son interpretadas y ejecutadas dinámicamente produciendo efectos sobre el ambiente, por ejemplo, creando variables. Estas variables permanecerán disponibles para ser consultadas por la/las próximas sentencias en caso de ser necesario. 
+
+R es un leguaje de programación funcional! Lo que significa que significa que provee un montón de herramientas para la creación y manipulación de funciones. Pero en nuestro caso no vamos a necesitar programar nuestras propias funciones ya que R tiene lista una colección de funciones de estadística listas para utilizar 😎 👍
+
+Particularmente nos vamos a centrar en las siguientes:
+
+```{r eval=FALSE}
+
+# Para la manipulación de los datos:
+
+datos <- c(1,2,3,4,5,6)  # Creación de vectores o listas (Ojo aca arrancan en 1!)
+
+length(datos)   # Cantidad total de datos
+min(datos)      # Mínimo
+max(datos)      # Máximo
+sum(datos)      # Suma del total de los datos
+mean(datos)     # Media
+median(datos)   # Mediana
+var(datos)      # Varianza
+sd(datos)       # Desvio estandar
+
+quantile(datos, c(0.25,0.50,0.75)) # Cuartiles
+
+# Para la creación de gráficos:
+
+hist(datos, ...)      # Histograma
+boxplot(datos, ...)   # Diagrama de caja o Box plot 
+pie(datos, ...)       # Gráfico de torta
+
+
+# Para lo que quieran investigar un poco mas:
+
+intervalos <- seq(desde, hasta, avance)   # Para la creación de secuencias
+cut(datos, intervalos)                    # Armar intervalos
+tabla <- data.frame(table(datos))         # Para armar una tabla con la frecuencia de los datos
+colnames(tabla)[1] <- "Col1"              # Cambiar nombres de las columnas
+tabla$DobleDeCol1 <- tabla$Col1*2         # Consultar columnas y hacer operaciones entre las mismas
+
+rev(c(1,2,3,4))                           # Invertir un vector, arreglo, lista o columna
+# [1] 4 3 2 1
+cumsum(c(1,1,1,1))                        # Suma acumulada de un vector, arreglo, lista o columna
+# [1] 1 2 3 4
+
+```
+
+----------
+> Esto no esta listo ↓↓↓ /
+
+> Lo voy a ir poniendo por celdas y mostrando las salidas!!!
+
+
+```{r eval=FALSE}
+
+# Ejercicio 11:
+
+
+# Para cargar los datos en una lista o vector usamos la funcion c() 
+# y le pasamos los valores separados por comas
+
+datos <- c(
+  84 ,85 ,87 ,72 ,88 ,87 ,86 ,88 ,80 ,82 ,88 ,76 ,75 ,85 ,81 ,93 ,84 ,80 ,83 ,89 ,83 ,88,
+  87 ,80 ,80 ,87 ,84 ,83 ,88 ,85 ,98 ,85 ,91 ,83 ,78 ,82 ,85 ,80 ,80 ,92 ,76 ,81 ,75 ,86,
+  84 ,82 ,89 ,85 ,88 ,85 ,89 ,83 ,87 ,85 ,85 ,80 ,92 ,86 ,78 ,89 ,88 ,81 ,90 ,85 ,72 ,87,
+  80 ,87 ,83 ,89 ,80 ,90 ,90 ,87 ,72 ,87 ,82 ,85 ,78 ,80 ,90 ,77 ,84 ,84 ,89 ,79 ,81 ,85
+)
+
+# Para ver la longitud usamos length
+
+length(datos)
+
+# No se olviden de Help para ver la documentaron de las funciones de R 
+
+help("length")  
+
+
+# Para crear una secuencia de numero usamos el comando seq(inicio, fin, avance) 
+
+intervalos <- seq(70,100,5)
+
+dataframe <- data.frame(table(cut(datos,intervalos, right = FALSE)))
+
+colnames(dataframe)[1] <- "Intervals"
+
+
+histograma <- hist(datos,  breaks = intervalos, xlim = c(65,105)  ,xlab = "Puntajes", ylab = "Frecuencia", main = "Histograma de puntajes")
+
+lines(c(67.5,c(histograma$mids),102.5), c(0,c(histograma$counts),0))
+
+
+
+
+dataframe$Freq
+
+dataframe$FrecRel <- dataframe$Freq/sum(dataframe$Freq)
+dataframe$RelPor <- dataframe$FrecRel*100
+dataframe$PorAcu <- cumsum(dataframe$RelPor)
+dataframe$PorDes <- rev(cumsum(rev(dataframe$RelPor)))
+
+
+rev(c(1,2,3,4))
+cumsum(c(1,1,1,1))
+
+pie(dataframe$Freq, labels = dataframe$Intervals, main = "Grafico de Frecuencias por intervalos")
+
+quantile(datos, c(0.85))
+summary(datos)
+
+box <- boxplot(datos, horizontal = TRUE)
+
+
+min(datos)
+max(datos)
+mean(datos)
+median(datos)
+var(datos)
+sd(datos)
+quantile(datos, c(0.25,0.50,0.75))
+
+
+cv <- sd(datos)/mean(datos)
+cv*100
+
+write.csv(dataframe,"ej11.csv")
+
+
+pie(dataframe$Freq, labels = dataframe$Intervals)
+pie(datos)
+
+
+```
+
