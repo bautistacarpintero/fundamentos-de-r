@@ -163,108 +163,162 @@ a.sourceLine {
 <span id="cb1-11"><a href="#cb1-11"></a><span class="kw">var</span>(datos)      <span class="co"># Varianza</span></span>
 <span id="cb1-12"><a href="#cb1-12"></a><span class="kw">sd</span>(datos)       <span class="co"># Desvio estandar</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>)) <span class="co"># Cuartiles</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>cv &lt;-<span class="st"> </span><span class="kw">sd</span>(datos)<span class="op">/</span><span class="kw">mean</span>(datos) <span class="co"># Guardamos en la variable cv el Coeficiente de Variación </span></span>
 <span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># Para la creación de gráficos:</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>)) <span class="co"># Cuartiles</span></span>
 <span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="kw">hist</span>(datos, ...)      <span class="co"># Histograma</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="kw">boxplot</span>(datos, ...)   <span class="co"># Diagrama de caja o Box plot </span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="kw">pie</span>(datos, ...)       <span class="co"># Gráfico de torta</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="co"># Para lo que quieran investigar un poco mas:</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># Para la creación de gráficos:</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="kw">hist</span>(datos, ...)      <span class="co"># Histograma</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="kw">boxplot</span>(datos, ...)   <span class="co"># Diagrama de caja o Box plot </span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="kw">pie</span>(datos, ...)       <span class="co"># Gráfico de torta</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
 <span id="cb1-24"><a href="#cb1-24"></a></span>
-<span id="cb1-25"><a href="#cb1-25"></a>intervalos &lt;-<span class="st"> </span><span class="kw">seq</span>(desde, hasta, avance)   <span class="co"># Para la creación de secuencias</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="kw">cut</span>(datos, intervalos)                    <span class="co"># Armar intervalos</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a>tabla &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">table</span>(datos))         <span class="co"># Para armar una tabla con la frecuencia de los datos</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="kw">colnames</span>(tabla)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Col1&quot;</span>              <span class="co"># Cambiar nombres de las columnas</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a>tabla<span class="op">$</span>DobleDeCol1 &lt;-<span class="st"> </span>tabla<span class="op">$</span>Col1<span class="op">*</span><span class="dv">2</span>         <span class="co"># Consultar columnas y hacer operaciones entre las mismas</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a></span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="kw">rev</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))                           <span class="co"># Invertir un vector, arreglo, lista o columna</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="co"># [1] 4 3 2 1</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="kw">cumsum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))                        <span class="co"># Suma acumulada de un vector, arreglo, lista o columna</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="co"># [1] 1 2 3 4</span></span></code></pre></div>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># Para lo que quieran investigar un poco mas:</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a></span>
+<span id="cb1-27"><a href="#cb1-27"></a>intervalos &lt;-<span class="st"> </span><span class="kw">seq</span>(desde, hasta, avance)   <span class="co"># Para la creación de secuencias</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="kw">cut</span>(datos, intervalos)                    <span class="co"># Armar intervalos</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>tabla &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">table</span>(datos))         <span class="co"># Para armar una tabla con la frecuencia de los datos</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="kw">colnames</span>(tabla)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Col1&quot;</span>              <span class="co"># Cambiar nombres de las columnas</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>tabla<span class="op">$</span>DobleDeCol1 &lt;-<span class="st"> </span>tabla<span class="op">$</span>Col1<span class="op">*</span><span class="dv">2</span>         <span class="co"># Consultar columnas y hacer operaciones entre las mismas</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a></span>
+<span id="cb1-33"><a href="#cb1-33"></a><span class="kw">rev</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))                           <span class="co"># Invertir un vector, arreglo, lista o columna</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co"># [1] 4 3 2 1</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="kw">cumsum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))                        <span class="co"># Suma acumulada de un vector, arreglo, lista o columna</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="co"># [1] 1 2 3 4</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a></span>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="kw">help</span>(<span class="st">&quot;hist&quot;</span>)  <span class="co"># Para obtener la documentación oficial de cualquier función!!! </span></span>
+<span id="cb1-40"><a href="#cb1-40"></a></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="co"># También recuerden que con print(&quot;Hola Mundo!&quot;) pueden mostrar en la consola</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="co"># Pero si ejecutan el nombre de una variable o función a secas les imprime el contenido</span></span></code></pre></div>
 <hr />
+</div>
+<div id="practiquemos-con-un-ejemplo" class="section level2">
+<h2>Practiquemos con un ejemplo!</h2>
+<div id="ejercicio-11" class="section level3">
+<h3>Ejercicio 11</h3>
+<p>5.11 Para los 88 estudiantes que participaron de una evaluación tomada por un investigador en un colegio se obtuvieron los siguientes puntajes:</p>
+<center>
+<pre><code>84 85 87 72 88 87 86 88 80 82 88 76 75 85 81 93 84 80 83 89 83 88
+87 80 80 87 84 83 88 85 98 85 91 83 78 82 85 80 80 92 76 81 75 86
+84 82 89 85 88 85 89 83 87 85 85 80 92 86 78 89 88 81 90 85 72 87
+80 87 83 89 80 90 90 87 72 87 82 85 78 80 90 77 84 84 89 79 81 85
+</code></pre>
+</center>
+<ol style="list-style-type: lower-alpha">
+<li>Formar la distribución de frecuencias con intervalos de amplitud 5</li>
+<li>Trazar el histograma y el polígono</li>
+<li>Formar la distribución de porcentajes acumulado</li>
+<li>¿Cuál es el puntaje más típico?</li>
+<li>¿Cuál es el recorrido de los puntajes?</li>
+<li>¿Qué porcentaje de estudiantes tuvo un puntaje de menos de 80?</li>
+<li>El 85% de los estudiantes tuvo puntajes menores ¿a qué valor?</li>
+<li>¿Qué forma tiene la distribución de los datos? Realizar un box plot.</li>
+<li>Calcular las medidas de dispersión que considere apropiadas.</li>
+</ol>
+<hr />
+<div id="cargamos-y-mostramos-los-datos" class="section level4">
+<h4>Cargamos y mostramos los datos</h4>
 <blockquote>
-<p>Esto no esta listo ↓↓↓ /</p>
+<p>Para esto usamos la función c(…)</p>
+</blockquote>
+<p>Combine Values into a Vector or List -&gt; Para mas info <code>help("c")</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>datos &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dv">84</span> ,<span class="dv">85</span> ,<span class="dv">87</span> ,<span class="dv">72</span> ,<span class="dv">88</span> ,<span class="dv">87</span> ,<span class="dv">86</span> ,<span class="dv">88</span> ,<span class="dv">80</span> ,<span class="dv">82</span> ,<span class="dv">88</span> ,<span class="dv">76</span> ,<span class="dv">75</span> ,<span class="dv">85</span> ,<span class="dv">81</span> ,<span class="dv">93</span> ,<span class="dv">84</span> ,<span class="dv">80</span> ,<span class="dv">83</span> ,<span class="dv">89</span> ,<span class="dv">83</span> ,<span class="dv">88</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dv">87</span> ,<span class="dv">80</span> ,<span class="dv">80</span> ,<span class="dv">87</span> ,<span class="dv">84</span> ,<span class="dv">83</span> ,<span class="dv">88</span> ,<span class="dv">85</span> ,<span class="dv">98</span> ,<span class="dv">85</span> ,<span class="dv">91</span> ,<span class="dv">83</span> ,<span class="dv">78</span> ,<span class="dv">82</span> ,<span class="dv">85</span> ,<span class="dv">80</span> ,<span class="dv">80</span> ,<span class="dv">92</span> ,<span class="dv">76</span> ,<span class="dv">81</span> ,<span class="dv">75</span> ,<span class="dv">86</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dv">84</span> ,<span class="dv">82</span> ,<span class="dv">89</span> ,<span class="dv">85</span> ,<span class="dv">88</span> ,<span class="dv">85</span> ,<span class="dv">89</span> ,<span class="dv">83</span> ,<span class="dv">87</span> ,<span class="dv">85</span> ,<span class="dv">85</span> ,<span class="dv">80</span> ,<span class="dv">92</span> ,<span class="dv">86</span> ,<span class="dv">78</span> ,<span class="dv">89</span> ,<span class="dv">88</span> ,<span class="dv">81</span> ,<span class="dv">90</span> ,<span class="dv">85</span> ,<span class="dv">72</span> ,<span class="dv">87</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dv">80</span> ,<span class="dv">87</span> ,<span class="dv">83</span> ,<span class="dv">89</span> ,<span class="dv">80</span> ,<span class="dv">90</span> ,<span class="dv">90</span> ,<span class="dv">87</span> ,<span class="dv">72</span> ,<span class="dv">87</span> ,<span class="dv">82</span> ,<span class="dv">85</span> ,<span class="dv">78</span> ,<span class="dv">80</span> ,<span class="dv">90</span> ,<span class="dv">77</span> ,<span class="dv">84</span> ,<span class="dv">84</span> ,<span class="dv">89</span> ,<span class="dv">79</span> ,<span class="dv">81</span> ,<span class="dv">85</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>datos</span></code></pre></div>
+<pre><code>##  [1] 84 85 87 72 88 87 86 88 80 82 88 76 75 85 81 93 84 80 83 89 83 88 87 80 80
+## [26] 87 84 83 88 85 98 85 91 83 78 82 85 80 80 92 76 81 75 86 84 82 89 85 88 85
+## [51] 89 83 87 85 85 80 92 86 78 89 88 81 90 85 72 87 80 87 83 89 80 90 90 87 72
+## [76] 87 82 85 78 80 90 77 84 84 89 79 81 85</code></pre>
+</div>
+<div id="armamos-los-intervalos-y-tabla-de-frecuencias" class="section level4">
+<h4>Armamos los intervalos y tabla de frecuencias</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>intervalos &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">70</span>,<span class="dv">100</span>,<span class="dv">5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>intervalos</span></code></pre></div>
+<pre><code>## [1]  70  75  80  85  90  95 100</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tabla &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">table</span>(<span class="kw">cut</span>(datos,intervalos, <span class="dt">right =</span> <span class="ot">FALSE</span>))) </span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">colnames</span>(tabla)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Intervals&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>tabla </span></code></pre></div>
+<pre><code>##   Intervals Freq
+## 1   [70,75)    3
+## 2   [75,80)    9
+## 3   [80,85)   30
+## 4   [85,90)   37
+## 5   [90,95)    8
+## 6  [95,100)    1</code></pre>
+<p>Nota:</p>
+<p>Con <code>cut(datos, intervalos)</code> obtenemos un vector en donde cada item se corresponde uno a uno con el de los <code>datos</code> originales, solo que en lugar de los valores se encuentra el intervalo al que pertenece. Pueden jugar con el parámetro <code>right</code> pasando TRUE o FALSE acorde a que limite del intervalo (superior o inferior) desean incluir.</p>
+<p>Luego con <code>table(...)</code> la tabla de intervalos con sus frecuencias. Para finalmente mediante <code>data.frame(...)</code> poder formar las columnas con su respectivo nombre y guardarlas en la variable <code>tabla</code>. Esta variable es de tipo dataframe, lu cual nos permitira recuperar las columnas con <code>$</code> y hacer operaciones entre las mismas.</p>
+<p>Para mas info: <code>help("cut")</code> <code>help("table")</code> <code>help("data.frame")</code></p>
+</div>
+<div id="histograma-y-polígono-de-frecuencias" class="section level4">
+<h4>Histograma y Polígono de frecuencias</h4>
+<p>Desafortunadamente en los histogramas de R no hay una forma sencilla de incluir el polígono de frecuencias nuestro gráfico. Sin embargo, podemos usar la función <code>lines(coordsX, coordsY)</code> para dibujar líneas entre el conjunto de puntos que pasamos por parámetro. Mediante esta mecánica logramos dibujar el polígono utilizando los valores medios de las barras del histograma, los cuales los recuperamos con <code>histograma$mids</code>. Con <code>histograma$counts</code> recuperamos las frecuencias.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>histograma &lt;-<span class="st"> </span><span class="kw">hist</span>(datos,                          <span class="co"># Paso los datos originales</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>                 <span class="dt">breaks =</span> intervalos,              <span class="co"># Vector con limites de intervalos</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>                 <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">105</span>),                 <span class="co"># Limites eje X</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>                 <span class="dt">xlab =</span> <span class="st">&quot;Puntajes&quot;</span>,                <span class="co"># Titulo de eje X</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>                 <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>,              <span class="co"># Titulo de eje Y</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>                 <span class="dt">main =</span> <span class="st">&quot;Histograma de puntajes&quot;</span>)  <span class="co"># Titulo del Grafico</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co"># Nota: el unico parametro obligatorio son los datos -&gt; hist(datos) Funciona!</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co"># El param breaks me da control sobre como se arman las barras</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a></span>
+<span id="cb9-12"><a href="#cb9-12"></a></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="kw">lines</span>( <span class="kw">c</span>(<span class="fl">67.5</span>,<span class="kw">c</span>(histograma<span class="op">$</span>mids),<span class="fl">102.5</span>) , <span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">c</span>(histograma<span class="op">$</span>counts),<span class="dv">0</span>) )</span></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" /><!-- --></p>
+<blockquote>
+<p>Hasta el momento llegue hasta aca!!!</p>
 </blockquote>
 <blockquote>
-<p>Lo voy a ir poniendo por celdas y mostrando las salidas!!!</p>
+<p>Todavia me queda por armar las celdas y explicar este codigo ↓↓↓</p>
 </blockquote>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Ejercicio 11:</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Para cargar los datos en una lista o vector usamos la funcion c() </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># y le pasamos los valores separados por comas</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a>datos &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="dv">84</span> ,<span class="dv">85</span> ,<span class="dv">87</span> ,<span class="dv">72</span> ,<span class="dv">88</span> ,<span class="dv">87</span> ,<span class="dv">86</span> ,<span class="dv">88</span> ,<span class="dv">80</span> ,<span class="dv">82</span> ,<span class="dv">88</span> ,<span class="dv">76</span> ,<span class="dv">75</span> ,<span class="dv">85</span> ,<span class="dv">81</span> ,<span class="dv">93</span> ,<span class="dv">84</span> ,<span class="dv">80</span> ,<span class="dv">83</span> ,<span class="dv">89</span> ,<span class="dv">83</span> ,<span class="dv">88</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dv">87</span> ,<span class="dv">80</span> ,<span class="dv">80</span> ,<span class="dv">87</span> ,<span class="dv">84</span> ,<span class="dv">83</span> ,<span class="dv">88</span> ,<span class="dv">85</span> ,<span class="dv">98</span> ,<span class="dv">85</span> ,<span class="dv">91</span> ,<span class="dv">83</span> ,<span class="dv">78</span> ,<span class="dv">82</span> ,<span class="dv">85</span> ,<span class="dv">80</span> ,<span class="dv">80</span> ,<span class="dv">92</span> ,<span class="dv">76</span> ,<span class="dv">81</span> ,<span class="dv">75</span> ,<span class="dv">86</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dv">84</span> ,<span class="dv">82</span> ,<span class="dv">89</span> ,<span class="dv">85</span> ,<span class="dv">88</span> ,<span class="dv">85</span> ,<span class="dv">89</span> ,<span class="dv">83</span> ,<span class="dv">87</span> ,<span class="dv">85</span> ,<span class="dv">85</span> ,<span class="dv">80</span> ,<span class="dv">92</span> ,<span class="dv">86</span> ,<span class="dv">78</span> ,<span class="dv">89</span> ,<span class="dv">88</span> ,<span class="dv">81</span> ,<span class="dv">90</span> ,<span class="dv">85</span> ,<span class="dv">72</span> ,<span class="dv">87</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dv">80</span> ,<span class="dv">87</span> ,<span class="dv">83</span> ,<span class="dv">89</span> ,<span class="dv">80</span> ,<span class="dv">90</span> ,<span class="dv">90</span> ,<span class="dv">87</span> ,<span class="dv">72</span> ,<span class="dv">87</span> ,<span class="dv">82</span> ,<span class="dv">85</span> ,<span class="dv">78</span> ,<span class="dv">80</span> ,<span class="dv">90</span> ,<span class="dv">77</span> ,<span class="dv">84</span> ,<span class="dv">84</span> ,<span class="dv">89</span> ,<span class="dv">79</span> ,<span class="dv">81</span> ,<span class="dv">85</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>)</span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># Para ver la longitud usamos length</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="kw">length</span>(datos)</span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># No se olviden de Help para ver la documentaron de las funciones de R </span></span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="kw">help</span>(<span class="st">&quot;length&quot;</span>)  </span>
-<span id="cb2-21"><a href="#cb2-21"></a></span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co"># Para crear una secuencia de numero usamos el comando seq(inicio, fin, avance) </span></span>
-<span id="cb2-24"><a href="#cb2-24"></a></span>
-<span id="cb2-25"><a href="#cb2-25"></a>intervalos &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">70</span>,<span class="dv">100</span>,<span class="dv">5</span>)</span>
-<span id="cb2-26"><a href="#cb2-26"></a></span>
-<span id="cb2-27"><a href="#cb2-27"></a>dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">table</span>(<span class="kw">cut</span>(datos,intervalos, <span class="dt">right =</span> <span class="ot">FALSE</span>)))</span>
-<span id="cb2-28"><a href="#cb2-28"></a></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="kw">colnames</span>(dataframe)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Intervals&quot;</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a></span>
-<span id="cb2-32"><a href="#cb2-32"></a>histograma &lt;-<span class="st"> </span><span class="kw">hist</span>(datos,  <span class="dt">breaks =</span> intervalos, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">105</span>)  ,<span class="dt">xlab =</span> <span class="st">&quot;Puntajes&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma de puntajes&quot;</span>)</span>
-<span id="cb2-33"><a href="#cb2-33"></a></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="fl">67.5</span>,<span class="kw">c</span>(histograma<span class="op">$</span>mids),<span class="fl">102.5</span>), <span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">c</span>(histograma<span class="op">$</span>counts),<span class="dv">0</span>))</span>
-<span id="cb2-35"><a href="#cb2-35"></a></span>
-<span id="cb2-36"><a href="#cb2-36"></a></span>
-<span id="cb2-37"><a href="#cb2-37"></a></span>
-<span id="cb2-38"><a href="#cb2-38"></a></span>
-<span id="cb2-39"><a href="#cb2-39"></a>dataframe<span class="op">$</span>Freq</span>
-<span id="cb2-40"><a href="#cb2-40"></a></span>
-<span id="cb2-41"><a href="#cb2-41"></a>dataframe<span class="op">$</span>FrecRel &lt;-<span class="st"> </span>dataframe<span class="op">$</span>Freq<span class="op">/</span><span class="kw">sum</span>(dataframe<span class="op">$</span>Freq)</span>
-<span id="cb2-42"><a href="#cb2-42"></a>dataframe<span class="op">$</span>RelPor &lt;-<span class="st"> </span>dataframe<span class="op">$</span>FrecRel<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a>dataframe<span class="op">$</span>PorAcu &lt;-<span class="st"> </span><span class="kw">cumsum</span>(dataframe<span class="op">$</span>RelPor)</span>
-<span id="cb2-44"><a href="#cb2-44"></a>dataframe<span class="op">$</span>PorDes &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">cumsum</span>(<span class="kw">rev</span>(dataframe<span class="op">$</span>RelPor)))</span>
-<span id="cb2-45"><a href="#cb2-45"></a></span>
-<span id="cb2-46"><a href="#cb2-46"></a></span>
-<span id="cb2-47"><a href="#cb2-47"></a><span class="kw">rev</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="kw">cumsum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb2-49"><a href="#cb2-49"></a></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="kw">pie</span>(dataframe<span class="op">$</span>Freq, <span class="dt">labels =</span> dataframe<span class="op">$</span>Intervals, <span class="dt">main =</span> <span class="st">&quot;Grafico de Frecuencias por intervalos&quot;</span>)</span>
-<span id="cb2-51"><a href="#cb2-51"></a></span>
-<span id="cb2-52"><a href="#cb2-52"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.85</span>))</span>
-<span id="cb2-53"><a href="#cb2-53"></a><span class="kw">summary</span>(datos)</span>
-<span id="cb2-54"><a href="#cb2-54"></a></span>
-<span id="cb2-55"><a href="#cb2-55"></a>box &lt;-<span class="st"> </span><span class="kw">boxplot</span>(datos, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb2-56"><a href="#cb2-56"></a></span>
-<span id="cb2-57"><a href="#cb2-57"></a></span>
-<span id="cb2-58"><a href="#cb2-58"></a><span class="kw">min</span>(datos)</span>
-<span id="cb2-59"><a href="#cb2-59"></a><span class="kw">max</span>(datos)</span>
-<span id="cb2-60"><a href="#cb2-60"></a><span class="kw">mean</span>(datos)</span>
-<span id="cb2-61"><a href="#cb2-61"></a><span class="kw">median</span>(datos)</span>
-<span id="cb2-62"><a href="#cb2-62"></a><span class="kw">var</span>(datos)</span>
-<span id="cb2-63"><a href="#cb2-63"></a><span class="kw">sd</span>(datos)</span>
-<span id="cb2-64"><a href="#cb2-64"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>))</span>
-<span id="cb2-65"><a href="#cb2-65"></a></span>
-<span id="cb2-66"><a href="#cb2-66"></a></span>
-<span id="cb2-67"><a href="#cb2-67"></a>cv &lt;-<span class="st"> </span><span class="kw">sd</span>(datos)<span class="op">/</span><span class="kw">mean</span>(datos)</span>
-<span id="cb2-68"><a href="#cb2-68"></a>cv<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb2-69"><a href="#cb2-69"></a></span>
-<span id="cb2-70"><a href="#cb2-70"></a><span class="kw">write.csv</span>(dataframe,<span class="st">&quot;ej11.csv&quot;</span>)</span>
-<span id="cb2-71"><a href="#cb2-71"></a></span>
-<span id="cb2-72"><a href="#cb2-72"></a></span>
-<span id="cb2-73"><a href="#cb2-73"></a><span class="kw">pie</span>(dataframe<span class="op">$</span>Freq, <span class="dt">labels =</span> dataframe<span class="op">$</span>Intervals)</span>
-<span id="cb2-74"><a href="#cb2-74"></a><span class="kw">pie</span>(datos)</span></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>tabla<span class="op">$</span>Freq</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>tabla<span class="op">$</span>FrecRel &lt;-<span class="st"> </span>tabla<span class="op">$</span>Freq<span class="op">/</span><span class="kw">sum</span>(tabla<span class="op">$</span>Freq)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>tabla<span class="op">$</span>RelPor &lt;-<span class="st"> </span>tabla<span class="op">$</span>FrecRel<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>tabla<span class="op">$</span>PorAcu &lt;-<span class="st"> </span><span class="kw">cumsum</span>(tabla<span class="op">$</span>RelPor)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>tabla<span class="op">$</span>PorDes &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">cumsum</span>(<span class="kw">rev</span>(tabla<span class="op">$</span>RelPor)))</span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="kw">rev</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="kw">cumsum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="kw">pie</span>(tabla<span class="op">$</span>Freq, <span class="dt">labels =</span> tabla<span class="op">$</span>Intervals, <span class="dt">main =</span> <span class="st">&quot;Grafico de Frecuencias por intervalos&quot;</span>)</span>
+<span id="cb10-13"><a href="#cb10-13"></a></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.85</span>))</span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="kw">summary</span>(datos)</span>
+<span id="cb10-16"><a href="#cb10-16"></a></span>
+<span id="cb10-17"><a href="#cb10-17"></a>box &lt;-<span class="st"> </span><span class="kw">boxplot</span>(datos, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb10-18"><a href="#cb10-18"></a></span>
+<span id="cb10-19"><a href="#cb10-19"></a></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="kw">min</span>(datos)</span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="kw">max</span>(datos)</span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="kw">mean</span>(datos)</span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="kw">median</span>(datos)</span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="kw">var</span>(datos)</span>
+<span id="cb10-25"><a href="#cb10-25"></a><span class="kw">sd</span>(datos)</span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>))</span>
+<span id="cb10-27"><a href="#cb10-27"></a></span>
+<span id="cb10-28"><a href="#cb10-28"></a></span>
+<span id="cb10-29"><a href="#cb10-29"></a>cv &lt;-<span class="st"> </span><span class="kw">sd</span>(datos)<span class="op">/</span><span class="kw">mean</span>(datos)</span>
+<span id="cb10-30"><a href="#cb10-30"></a>cv<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb10-31"><a href="#cb10-31"></a></span>
+<span id="cb10-32"><a href="#cb10-32"></a><span class="kw">write.csv</span>(tabla,<span class="st">&quot;ej11.csv&quot;</span>)</span>
+<span id="cb10-33"><a href="#cb10-33"></a></span>
+<span id="cb10-34"><a href="#cb10-34"></a></span>
+<span id="cb10-35"><a href="#cb10-35"></a><span class="kw">pie</span>(tabla<span class="op">$</span>Freq, <span class="dt">labels =</span> tabla<span class="op">$</span>Intervals)</span>
+<span id="cb10-36"><a href="#cb10-36"></a><span class="kw">pie</span>(datos)</span></code></pre></div>
+</div>
+</div>
 </div>
 </div>
 </section>
