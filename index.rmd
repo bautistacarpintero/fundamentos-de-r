@@ -1,6 +1,6 @@
 ---
-title: Fundamentos de R
-author: Ingeniería de Sistemas, Licenciatura en Tecnología Ambiental y Profesorado de Matemáticas.
+title: Fundamentos de R - Resolución 
+author: Probabilidad y Estadística – UNICEN
 output:
   prettydoc::html_pretty:
     theme: cayman
@@ -9,8 +9,8 @@ editor_options:
   chunk_output_type: console
 ---
 
-> Fundamentos basicos del lenguaje de programación R
-> en el contexto de la catedra Probabilidad y Estadistica
+> En este apartado vamos a ver los elementos fundamentales del leguaje de programación R y los utilizaremos para resolver el Ejercicio 11 de la practica de Estadística Descriptiva. 
+
 
 
 # Introducion
