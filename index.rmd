@@ -1,5 +1,5 @@
 ---
-title: Fundamentos de R - Resolución 
+title: Fundamentos de R - Resolución Ej 11
 author: Probabilidad y Estadística – UNICEN
 output:
   prettydoc::html_pretty:
