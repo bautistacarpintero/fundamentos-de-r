@@ -243,15 +243,16 @@ a.sourceLine {
 <span id="cb5-2"><a href="#cb5-2"></a>intervalos</span></code></pre></div>
 <pre><code>## [1]  70  75  80  85  90  95 100</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tabla &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">table</span>(<span class="kw">cut</span>(datos,intervalos, <span class="dt">right =</span> <span class="ot">FALSE</span>))) </span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">colnames</span>(tabla)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Intervals&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>tabla </span></code></pre></div>
-<pre><code>##   Intervals Freq
-## 1   [70,75)    3
-## 2   [75,80)    9
-## 3   [80,85)   30
-## 4   [85,90)   37
-## 5   [90,95)    8
-## 6  [95,100)    1</code></pre>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">colnames</span>(tabla)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Intervalos&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">colnames</span>(tabla)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;Frec&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>tabla </span></code></pre></div>
+<pre><code>##   Intervalos Frec
+## 1    [70,75)    3
+## 2    [75,80)    9
+## 3    [80,85)   30
+## 4    [85,90)   37
+## 5    [90,95)    8
+## 6   [95,100)    1</code></pre>
 <p>Nota:</p>
 <p>Con <code>cut(datos, intervalos)</code> obtenemos un vector en donde cada item se corresponde uno a uno con el de los <code>datos</code> originales, solo que en lugar de los valores se encuentra el intervalo al que pertenece. Pueden jugar con el parámetro <code>right</code> pasando TRUE o FALSE acorde a que limite del intervalo (superior o inferior) desean incluir.</p>
 <p>Luego con <code>table(...)</code> la tabla de intervalos con sus frecuencias. Para finalmente mediante <code>data.frame(...)</code> poder formar las columnas con su respectivo nombre y guardarlas en la variable <code>tabla</code>. Esta variable es de tipo dataframe, lu cual nos permitira recuperar las columnas con <code>$</code> y hacer operaciones entre las mismas.</p>
@@ -278,7 +279,7 @@ a.sourceLine {
 <div id="distribuciones-de-frecuencias" class="section level4">
 <h4>Distribuciones de frecuencias</h4>
 <p>Creación de columnas asociadas a las distribuciones de frecuencias</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>tabla<span class="op">$</span>FrecRel &lt;-<span class="st"> </span>tabla<span class="op">$</span>Freq<span class="op">/</span><span class="kw">sum</span>(tabla<span class="op">$</span>Freq)      <span class="co"># Frecuencia relativa</span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>tabla<span class="op">$</span>FrecRel &lt;-<span class="st"> </span>tabla<span class="op">$</span>Frec<span class="op">/</span><span class="kw">sum</span>(tabla<span class="op">$</span>Frec)      <span class="co"># Frecuencia relativa</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>tabla<span class="op">$</span>RelPor &lt;-<span class="st"> </span>tabla<span class="op">$</span>FrecRel<span class="op">*</span><span class="dv">100</span>                <span class="co"># Frecuencia relativa porcentual</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>tabla<span class="op">$</span>RelAcu &lt;-<span class="st"> </span><span class="kw">cumsum</span>(tabla<span class="op">$</span>FrecRel)            <span class="co"># Frecuencia relativa acumulada creciente </span></span>
 <span id="cb10-4"><a href="#cb10-4"></a>tabla<span class="op">$</span>RelDes &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">cumsum</span>(<span class="kw">rev</span>(tabla<span class="op">$</span>FrecRel)))  <span class="co"># Frecuencia relativa acumulada decreciente </span></span>
@@ -287,18 +288,18 @@ a.sourceLine {
 <span id="cb10-7"><a href="#cb10-7"></a></span>
 <span id="cb10-8"><a href="#cb10-8"></a><span class="co"># Pueden imprimir la tabla usando print(...) y pasando la cantidad de digitos de los datos</span></span>
 <span id="cb10-9"><a href="#cb10-9"></a><span class="kw">print</span>(tabla, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##   Intervals Freq FrecRel RelPor RelAcu RelDes PorAcu PorDes
-## 1   [70,75)    3  0.0341   3.41 0.0341 1.0000   3.41 100.00
-## 2   [75,80)    9  0.1023  10.23 0.1364 0.9659  13.64  96.59
-## 3   [80,85)   30  0.3409  34.09 0.4773 0.8636  47.73  86.36
-## 4   [85,90)   37  0.4205  42.05 0.8977 0.5227  89.77  52.27
-## 5   [90,95)    8  0.0909   9.09 0.9886 0.1023  98.86  10.23
-## 6  [95,100)    1  0.0114   1.14 1.0000 0.0114 100.00   1.14</code></pre>
+<pre><code>##   Intervalos Frec FrecRel RelPor RelAcu RelDes PorAcu PorDes
+## 1    [70,75)    3  0.0341   3.41 0.0341 1.0000   3.41 100.00
+## 2    [75,80)    9  0.1023  10.23 0.1364 0.9659  13.64  96.59
+## 3    [80,85)   30  0.3409  34.09 0.4773 0.8636  47.73  86.36
+## 4    [85,90)   37  0.4205  42.05 0.8977 0.5227  89.77  52.27
+## 5    [90,95)    8  0.0909   9.09 0.9886 0.1023  98.86  10.23
+## 6   [95,100)    1  0.0114   1.14 1.0000 0.0114 100.00   1.14</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Intervals</th>
-<th align="right">Freq</th>
+<th align="left">Intervalos</th>
+<th align="right">Frec</th>
 <th align="right">FrecRel</th>
 <th align="right">RelPor</th>
 <th align="right">RelAcu</th>
@@ -379,8 +380,8 @@ a.sourceLine {
 <span id="cb12-4"><a href="#cb12-4"></a></span>
 <span id="cb12-5"><a href="#cb12-5"></a><span class="kw">boxplot</span>(datos, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,  <span class="dt">main =</span> <span class="st">&quot;Diagrama de caja o Box plot&quot;</span>)</span></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-7-1.png" /><!-- --></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">pie</span>(tabla<span class="op">$</span>Freq, </span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="dt">labels =</span> <span class="kw">paste</span>(<span class="st">&quot; %&quot;</span>, <span class="kw">format</span>(tabla<span class="op">$</span>RelPor, <span class="dt">digits =</span> <span class="dv">2</span>), tabla<span class="op">$</span>Intervals ), </span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">pie</span>(tabla<span class="op">$</span>Frec, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="dt">labels =</span> <span class="kw">paste</span>(<span class="st">&quot; %&quot;</span>, <span class="kw">format</span>(tabla<span class="op">$</span>RelPor, <span class="dt">digits =</span> <span class="dv">2</span>), tabla<span class="op">$</span>Intervalos ), </span>
 <span id="cb13-3"><a href="#cb13-3"></a>    <span class="dt">main =</span> <span class="st">&quot;Grafico de Frecuencias por intervalos&quot;</span>,</span>
 <span id="cb13-4"><a href="#cb13-4"></a>    <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;#fff18f&quot;</span>,<span class="st">&quot;#fbb862&quot;</span>,<span class="st">&quot;#ee7d4f&quot;</span>,<span class="st">&quot;#d43d51&quot;</span>,<span class="st">&quot;#00876c&quot;</span>,<span class="st">&quot;#afd17c&quot;</span>),</span>
 <span id="cb13-5"><a href="#cb13-5"></a>    <span class="dt">border =</span> <span class="dv">0</span></span>

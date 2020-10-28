@@ -130,7 +130,8 @@ intervalos <- seq(70,100,5)
 intervalos
 
 tabla <- data.frame(table(cut(datos,intervalos, right = FALSE))) 
-colnames(tabla)[1] <- "Intervals"
+colnames(tabla)[1] <- "Intervalos"
+colnames(tabla)[2] <- "Frec"
 tabla 
 
 ```
@@ -174,7 +175,7 @@ Creación de columnas asociadas a las distribuciones de frecuencias
 
 ```{r}
 
-tabla$FrecRel <- tabla$Freq/sum(tabla$Freq)      # Frecuencia relativa
+tabla$FrecRel <- tabla$Frec/sum(tabla$Frec)      # Frecuencia relativa
 tabla$RelPor <- tabla$FrecRel*100                # Frecuencia relativa porcentual
 tabla$RelAcu <- cumsum(tabla$FrecRel)            # Frecuencia relativa acumulada creciente 
 tabla$RelDes <- rev(cumsum(rev(tabla$FrecRel)))  # Frecuencia relativa acumulada decreciente 
@@ -203,8 +204,8 @@ boxplot(datos, horizontal = TRUE,  main = "Diagrama de caja o Box plot")
 ```
 
 ```{r}
-pie(tabla$Freq, 
-    labels = paste(" %", format(tabla$RelPor, digits = 2), tabla$Intervals ), 
+pie(tabla$Frec, 
+    labels = paste(" %", format(tabla$RelPor, digits = 2), tabla$Intervalos ), 
     main = "Grafico de Frecuencias por intervalos",
     col = c("#fff18f","#fbb862","#ee7d4f","#d43d51","#00876c","#afd17c"),
     border = 0
