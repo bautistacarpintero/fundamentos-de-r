@@ -1,7 +1,7 @@
-name: "Práctico1"
+name: "Fundamentos de R - Resolucion"
 output_dir: "."
 navbar:
-  title: "Cientificos de Datos TP1 - Ejercicio Práctico IO"
+  title: "Probabilidad y Estadistica - UNICEN"
   left:
     - text: "Home"
       href: index.html
