@@ -145,7 +145,7 @@ Luego con `table(...)` la tabla de intervalos con sus frecuencias. Para finalmen
 
 
 
-Para mas info:  `help("cut")` `help("table")` `help("data.frame")`
+  -> Para mas info:  `help("cut")`   `help("table")`   `help("data.frame")`
 
 
 #### Histograma y Polígono de frecuencias
