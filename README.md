@@ -1,4 +1,4 @@
-# Fundamentos de R - Resolución
+# Fundamentos de R - Resolución Ej 11
 ## Probabilidad y Estadística – UNICEN
 
 > En este apartado vamos a ver los elementos fundamentales del leguaje de programación R y los utilizaremos para resolver el Ejercicio 11 de la practica de Estadística Descriptiva. 
