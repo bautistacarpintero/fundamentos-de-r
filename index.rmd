@@ -55,15 +55,15 @@ pie(datos, ...)       # Gráfico de torta
 
 # Para lo que quieran investigar un poco mas:
 
-intervalos <- seq(desde, hasta, avance)   # Para la creación de secuencias
-cut(datos, intervalos)                    # Armar intervalos
-tabla <- data.frame(table(datos))         # Para armar una tabla con la frecuencia de los datos
-colnames(tabla)[1] <- "Col1"              # Cambiar nombres de las columnas
-tabla$DobleDeCol1 <- tabla$Col1*2         # Consultar columnas y hacer operaciones entre las mismas
+seq(desde, hasta, avance)           # Para la creación de secuencias
+cut(datos, intervalos)              # Armar intervalos
+tabla <- data.frame(table(datos))   # Para armar una tabla con la frecuencia de los datos
+colnames(tabla)[1] <- "Col1"        # Cambiar nombres de las columnas
+tabla$DobleDeCol1 <- tabla$Col1*2   # Consultar columnas y hacer operaciones entre las mismas
 
-rev(c(1,2,3,4))                           # Invertir un vector, arreglo, lista o columna
+rev(c(1,2,3,4))                     # Invertir un vector, arreglo, lista o columna
 # [1] 4 3 2 1
-cumsum(c(1,1,1,1))                        # Suma acumulada de un vector, arreglo, lista o columna
+cumsum(c(1,1,1,1))                  # Suma acumulada de un vector, arreglo, lista o columna
 # [1] 1 2 3 4
 
 
