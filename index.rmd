@@ -1,12 +1,12 @@
 ---
 title: Fundamentos de R
 author: Ingeniería de Sistemas, Licenciatura en Tecnología Ambiental y Profesorado de Matemáticas.
-
 output:
   prettydoc::html_pretty:
     theme: cayman
     highlight: github
-
+editor_options: 
+  chunk_output_type: console
 ---
 
 > Fundamentos basicos del lenguaje de programación R
@@ -119,8 +119,6 @@ datos <- c(
 
 datos
 
-
-
 ```
 
 
@@ -170,52 +168,87 @@ lines( c(67.5,c(histograma$mids),102.5) , c(0,c(histograma$counts),0) )
 
 ```
 
+#### Distribuciones de frecuencias 
 
-> Hasta el momento llegue hasta aca!!! 
+Creación de columnas asociadas a las distribuciones de frecuencias 
 
-> Todavia me queda por armar las celdas y explicar este codigo ↓↓↓
+```{r}
 
------------------
+tabla$FrecRel <- tabla$Freq/sum(tabla$Freq)      # Frecuencia relativa
+tabla$RelPor <- tabla$FrecRel*100                # Frecuencia relativa porcentual
+tabla$RelAcu <- cumsum(tabla$FrecRel)            # Frecuencia relativa acumulada creciente 
+tabla$RelDes <- rev(cumsum(rev(tabla$FrecRel)))  # Frecuencia relativa acumulada decreciente 
+tabla$PorAcu <- cumsum(tabla$RelPor)             # Frecuencia relativa acumulada creciente porcentual
+tabla$PorDes <- rev(cumsum(rev(tabla$RelPor)))   # Frecuencia relativa acumulada decreciente porcentual
 
-```{r eval=FALSE}
+# Pueden imprimir la tabla usando print(...) y pasando la cantidad de digitos de los datos
+print(tabla, digits = 3)
 
-tabla$Freq
+```
 
-tabla$FrecRel <- tabla$Freq/sum(tabla$Freq)
-tabla$RelPor <- tabla$FrecRel*100
-tabla$PorAcu <- cumsum(tabla$RelPor)
-tabla$PorDes <- rev(cumsum(rev(tabla$RelPor)))
+```{r echo=FALSE}
+knitr::kable(tabla, format = "markdown", digits = 3)
+```
 
 
-rev(c(1,2,3,4))
-cumsum(c(1,1,1,1))
+#### Diagrama de caja y gráfico de torta 
 
-pie(tabla$Freq, labels = tabla$Intervals, main = "Grafico de Frecuencias por intervalos")
 
-quantile(datos, c(0.85))
+```{r collapse=TRUE}
 summary(datos)
 
-box <- boxplot(datos, horizontal = TRUE)
+boxplot(datos, horizontal = TRUE,  main = "Diagrama de caja o Box plot")
 
 
+```
+
+```{r}
+pie(tabla$Freq, 
+    labels = paste(" %", format(tabla$RelPor, digits = 2), tabla$Intervals ), 
+    main = "Grafico de Frecuencias por intervalos",
+    col = c("#fff18f","#fbb862","#ee7d4f","#d43d51","#00876c","#afd17c"),
+    border = 0
+    )
+
+```
+
+Nota:
+Al igual que con el histograma, no es necesario personalizar tanto los graficos.
+Se puede usar simplemente `pie(tabla$Freq)` y `boxplot(datos)`
+
+#### Medidas de dispersión
+
+A continuación, utilizaremos las funciones antes mencionadas para calcular las medidas de dispersión para este conjunto de datos
+
+```{r collapse=TRUE}
 min(datos)
-max(datos)
-mean(datos)
-median(datos)
-var(datos)
-sd(datos)
-quantile(datos, c(0.25,0.50,0.75))
 
+max(datos)
+
+mean(datos)
+
+median(datos)
+
+var(datos)
+
+sd(datos)
 
 cv <- sd(datos)/mean(datos)
 cv*100
 
-write.csv(tabla,"ej11.csv")
+quantile(datos, c(0.85))
 
+quantile(datos, c(0.25,0.50,0.75))
 
-pie(tabla$Freq, labels = tabla$Intervals)
-pie(datos)
+summary(datos)
 
+```
 
+#### Guardar resultados
+
+Opcionalmente pueden guardar la tabla resultante utilizando:
+
+```{r eval=FALSE}
+write.csv(tabla, "ej11.csv")
 ```
 

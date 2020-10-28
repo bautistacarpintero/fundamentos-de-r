@@ -274,49 +274,161 @@ a.sourceLine {
 <span id="cb9-12"><a href="#cb9-12"></a></span>
 <span id="cb9-13"><a href="#cb9-13"></a><span class="kw">lines</span>( <span class="kw">c</span>(<span class="fl">67.5</span>,<span class="kw">c</span>(histograma<span class="op">$</span>mids),<span class="fl">102.5</span>) , <span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">c</span>(histograma<span class="op">$</span>counts),<span class="dv">0</span>) )</span></code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" /><!-- --></p>
-<blockquote>
-<p>Hasta el momento llegue hasta aca!!!</p>
-</blockquote>
-<blockquote>
-<p>Todavia me queda por armar las celdas y explicar este codigo ↓↓↓</p>
-</blockquote>
-<hr />
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>tabla<span class="op">$</span>Freq</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>tabla<span class="op">$</span>FrecRel &lt;-<span class="st"> </span>tabla<span class="op">$</span>Freq<span class="op">/</span><span class="kw">sum</span>(tabla<span class="op">$</span>Freq)</span>
-<span id="cb10-4"><a href="#cb10-4"></a>tabla<span class="op">$</span>RelPor &lt;-<span class="st"> </span>tabla<span class="op">$</span>FrecRel<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>tabla<span class="op">$</span>PorAcu &lt;-<span class="st"> </span><span class="kw">cumsum</span>(tabla<span class="op">$</span>RelPor)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>tabla<span class="op">$</span>PorDes &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">cumsum</span>(<span class="kw">rev</span>(tabla<span class="op">$</span>RelPor)))</span>
+</div>
+<div id="distribuciones-de-frecuencias" class="section level4">
+<h4>Distribuciones de frecuencias</h4>
+<p>Creación de columnas asociadas a las distribuciones de frecuencias</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>tabla<span class="op">$</span>FrecRel &lt;-<span class="st"> </span>tabla<span class="op">$</span>Freq<span class="op">/</span><span class="kw">sum</span>(tabla<span class="op">$</span>Freq)      <span class="co"># Frecuencia relativa</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>tabla<span class="op">$</span>RelPor &lt;-<span class="st"> </span>tabla<span class="op">$</span>FrecRel<span class="op">*</span><span class="dv">100</span>                <span class="co"># Frecuencia relativa porcentual</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>tabla<span class="op">$</span>RelAcu &lt;-<span class="st"> </span><span class="kw">cumsum</span>(tabla<span class="op">$</span>FrecRel)            <span class="co"># Frecuencia relativa acumulada creciente </span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>tabla<span class="op">$</span>RelDes &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">cumsum</span>(<span class="kw">rev</span>(tabla<span class="op">$</span>FrecRel)))  <span class="co"># Frecuencia relativa acumulada decreciente </span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>tabla<span class="op">$</span>PorAcu &lt;-<span class="st"> </span><span class="kw">cumsum</span>(tabla<span class="op">$</span>RelPor)             <span class="co"># Frecuencia relativa acumulada creciente porcentual</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>tabla<span class="op">$</span>PorDes &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">cumsum</span>(<span class="kw">rev</span>(tabla<span class="op">$</span>RelPor)))   <span class="co"># Frecuencia relativa acumulada decreciente porcentual</span></span>
 <span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="kw">rev</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="kw">cumsum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb10-11"><a href="#cb10-11"></a></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="kw">pie</span>(tabla<span class="op">$</span>Freq, <span class="dt">labels =</span> tabla<span class="op">$</span>Intervals, <span class="dt">main =</span> <span class="st">&quot;Grafico de Frecuencias por intervalos&quot;</span>)</span>
-<span id="cb10-13"><a href="#cb10-13"></a></span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.85</span>))</span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="kw">summary</span>(datos)</span>
-<span id="cb10-16"><a href="#cb10-16"></a></span>
-<span id="cb10-17"><a href="#cb10-17"></a>box &lt;-<span class="st"> </span><span class="kw">boxplot</span>(datos, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb10-18"><a href="#cb10-18"></a></span>
-<span id="cb10-19"><a href="#cb10-19"></a></span>
-<span id="cb10-20"><a href="#cb10-20"></a><span class="kw">min</span>(datos)</span>
-<span id="cb10-21"><a href="#cb10-21"></a><span class="kw">max</span>(datos)</span>
-<span id="cb10-22"><a href="#cb10-22"></a><span class="kw">mean</span>(datos)</span>
-<span id="cb10-23"><a href="#cb10-23"></a><span class="kw">median</span>(datos)</span>
-<span id="cb10-24"><a href="#cb10-24"></a><span class="kw">var</span>(datos)</span>
-<span id="cb10-25"><a href="#cb10-25"></a><span class="kw">sd</span>(datos)</span>
-<span id="cb10-26"><a href="#cb10-26"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>))</span>
-<span id="cb10-27"><a href="#cb10-27"></a></span>
-<span id="cb10-28"><a href="#cb10-28"></a></span>
-<span id="cb10-29"><a href="#cb10-29"></a>cv &lt;-<span class="st"> </span><span class="kw">sd</span>(datos)<span class="op">/</span><span class="kw">mean</span>(datos)</span>
-<span id="cb10-30"><a href="#cb10-30"></a>cv<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb10-31"><a href="#cb10-31"></a></span>
-<span id="cb10-32"><a href="#cb10-32"></a><span class="kw">write.csv</span>(tabla,<span class="st">&quot;ej11.csv&quot;</span>)</span>
-<span id="cb10-33"><a href="#cb10-33"></a></span>
-<span id="cb10-34"><a href="#cb10-34"></a></span>
-<span id="cb10-35"><a href="#cb10-35"></a><span class="kw">pie</span>(tabla<span class="op">$</span>Freq, <span class="dt">labels =</span> tabla<span class="op">$</span>Intervals)</span>
-<span id="cb10-36"><a href="#cb10-36"></a><span class="kw">pie</span>(datos)</span></code></pre></div>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co"># Pueden imprimir la tabla usando print(...) y pasando la cantidad de digitos de los datos</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="kw">print</span>(tabla, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   Intervals Freq FrecRel RelPor RelAcu RelDes PorAcu PorDes
+## 1   [70,75)    3  0.0341   3.41 0.0341 1.0000   3.41 100.00
+## 2   [75,80)    9  0.1023  10.23 0.1364 0.9659  13.64  96.59
+## 3   [80,85)   30  0.3409  34.09 0.4773 0.8636  47.73  86.36
+## 4   [85,90)   37  0.4205  42.05 0.8977 0.5227  89.77  52.27
+## 5   [90,95)    8  0.0909   9.09 0.9886 0.1023  98.86  10.23
+## 6  [95,100)    1  0.0114   1.14 1.0000 0.0114 100.00   1.14</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Intervals</th>
+<th align="right">Freq</th>
+<th align="right">FrecRel</th>
+<th align="right">RelPor</th>
+<th align="right">RelAcu</th>
+<th align="right">RelDes</th>
+<th align="right">PorAcu</th>
+<th align="right">PorDes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">[70,75)</td>
+<td align="right">3</td>
+<td align="right">0.034</td>
+<td align="right">3.409</td>
+<td align="right">0.034</td>
+<td align="right">1.000</td>
+<td align="right">3.409</td>
+<td align="right">100.000</td>
+</tr>
+<tr class="even">
+<td align="left">[75,80)</td>
+<td align="right">9</td>
+<td align="right">0.102</td>
+<td align="right">10.227</td>
+<td align="right">0.136</td>
+<td align="right">0.966</td>
+<td align="right">13.636</td>
+<td align="right">96.591</td>
+</tr>
+<tr class="odd">
+<td align="left">[80,85)</td>
+<td align="right">30</td>
+<td align="right">0.341</td>
+<td align="right">34.091</td>
+<td align="right">0.477</td>
+<td align="right">0.864</td>
+<td align="right">47.727</td>
+<td align="right">86.364</td>
+</tr>
+<tr class="even">
+<td align="left">[85,90)</td>
+<td align="right">37</td>
+<td align="right">0.420</td>
+<td align="right">42.045</td>
+<td align="right">0.898</td>
+<td align="right">0.523</td>
+<td align="right">89.773</td>
+<td align="right">52.273</td>
+</tr>
+<tr class="odd">
+<td align="left">[90,95)</td>
+<td align="right">8</td>
+<td align="right">0.091</td>
+<td align="right">9.091</td>
+<td align="right">0.989</td>
+<td align="right">0.102</td>
+<td align="right">98.864</td>
+<td align="right">10.227</td>
+</tr>
+<tr class="even">
+<td align="left">[95,100)</td>
+<td align="right">1</td>
+<td align="right">0.011</td>
+<td align="right">1.136</td>
+<td align="right">1.000</td>
+<td align="right">0.011</td>
+<td align="right">100.000</td>
+<td align="right">1.136</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="diagrama-de-caja-y-gráfico-de-torta" class="section level4">
+<h4>Diagrama de caja y gráfico de torta</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">summary</span>(datos)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">##   72.00   80.75   85.00   84.08   87.25   98.00</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="kw">boxplot</span>(datos, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,  <span class="dt">main =</span> <span class="st">&quot;Diagrama de caja o Box plot&quot;</span>)</span></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" /><!-- --></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">pie</span>(tabla<span class="op">$</span>Freq, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="dt">labels =</span> <span class="kw">paste</span>(<span class="st">&quot; %&quot;</span>, <span class="kw">format</span>(tabla<span class="op">$</span>RelPor, <span class="dt">digits =</span> <span class="dv">2</span>), tabla<span class="op">$</span>Intervals ), </span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="dt">main =</span> <span class="st">&quot;Grafico de Frecuencias por intervalos&quot;</span>,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;#fff18f&quot;</span>,<span class="st">&quot;#fbb862&quot;</span>,<span class="st">&quot;#ee7d4f&quot;</span>,<span class="st">&quot;#d43d51&quot;</span>,<span class="st">&quot;#00876c&quot;</span>,<span class="st">&quot;#afd17c&quot;</span>),</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="dt">border =</span> <span class="dv">0</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    )</span></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" /><!-- --></p>
+<p>Nota: Al igual que con el histograma, no es necesario personalizar tanto los graficos. Se puede usar simplemente <code>pie(tabla$Freq)</code> y <code>boxplot(datos)</code></p>
+</div>
+<div id="medidas-de-dispersión" class="section level4">
+<h4>Medidas de dispersión</h4>
+<p>A continuación, utilizaremos las funciones antes mencionadas para calcular las medidas de dispersión para este conjunto de datos</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">min</span>(datos)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">## [1] 72</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="kw">max</span>(datos)</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">## [1] 98</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="kw">mean</span>(datos)</span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">## [1] 84.07955</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="kw">median</span>(datos)</span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">## [1] 85</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="kw">var</span>(datos)</span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="co">## [1] 23.98211</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="kw">sd</span>(datos)</span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="co">## [1] 4.897153</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a></span>
+<span id="cb14-19"><a href="#cb14-19"></a>cv &lt;-<span class="st"> </span><span class="kw">sd</span>(datos)<span class="op">/</span><span class="kw">mean</span>(datos)</span>
+<span id="cb14-20"><a href="#cb14-20"></a>cv<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a><span class="co">## [1] 5.824428</span></span>
+<span id="cb14-22"><a href="#cb14-22"></a></span>
+<span id="cb14-23"><a href="#cb14-23"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.85</span>))</span>
+<span id="cb14-24"><a href="#cb14-24"></a><span class="co">## 85% </span></span>
+<span id="cb14-25"><a href="#cb14-25"></a><span class="co">##  89</span></span>
+<span id="cb14-26"><a href="#cb14-26"></a></span>
+<span id="cb14-27"><a href="#cb14-27"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>))</span>
+<span id="cb14-28"><a href="#cb14-28"></a><span class="co">##   25%   50%   75% </span></span>
+<span id="cb14-29"><a href="#cb14-29"></a><span class="co">## 80.75 85.00 87.25</span></span>
+<span id="cb14-30"><a href="#cb14-30"></a></span>
+<span id="cb14-31"><a href="#cb14-31"></a><span class="kw">summary</span>(datos)</span>
+<span id="cb14-32"><a href="#cb14-32"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb14-33"><a href="#cb14-33"></a><span class="co">##   72.00   80.75   85.00   84.08   87.25   98.00</span></span></code></pre></div>
+</div>
+<div id="guardar-resultados" class="section level4">
+<h4>Guardar resultados</h4>
+<p>Opcionalmente pueden guardar la tabla resultante utilizando:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">write.csv</span>(tabla, <span class="st">&quot;ej11.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
