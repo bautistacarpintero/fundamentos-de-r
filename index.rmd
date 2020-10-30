@@ -240,7 +240,7 @@ Utilizo la funcion `plot(...)` para hacer el grafico de lineas
 plot(
   x = histograma$mids, 
   y = tabla$FrecAcu, 
-  type = "o",   # p l b c o s S h n
+  type = "o",  
   xlab = "Puntaje",
   ylab = "Frecuencias",
   main = "Frecuencias acumuladas",
@@ -250,7 +250,7 @@ plot(
 lines(
   x = histograma$mids,
   y = tabla$FrecDes, 
-  type = "o",   # p l b c o s S h n
+  type = "o",   
   col = "blue"
 )
 ```
