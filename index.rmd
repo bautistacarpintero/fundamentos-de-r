@@ -217,6 +217,45 @@ Nota:
 Al igual que con el histograma, no es necesario personalizar tanto los graficos.
 Se puede usar simplemente `pie(tabla$Freq)` y `boxplot(datos)`
 
+#### Grafico de ojivas
+
+```{r}
+tabla$FrecAcu <- cumsum(tabla$Frec)
+tabla$FrecDes <- rev(cumsum(rev(tabla$Frec)))
+
+# Selecciono las columnas que quiero imprimir
+tabla[c("Intervalos", "Frec", "FrecAcu", "FrecDes")] 
+
+```
+
+
+```{r echo=FALSE}
+knitr::kable(tabla[c("Intervalos", "Frec", "FrecAcu", "FrecDes")] , 
+             format = "markdown", digits = 3)
+```
+
+Utilizo la funcion `plot(...)` para hacer el grafico de lineas
+
+```{r}
+plot(
+  x = histograma$mids, 
+  y = tabla$FrecAcu, 
+  type = "o",   # p l b c o s S h n
+  xlab = "Puntaje",
+  ylab = "Frecuencias",
+  main = "Frecuencias acumuladas",
+  col = "red"
+)
+
+lines(
+  x = histograma$mids,
+  y = tabla$FrecDes, 
+  type = "o",   # p l b c o s S h n
+  col = "blue"
+)
+```
+
+
 #### Medidas de dispersión
 
 A continuación, utilizaremos las funciones antes mencionadas para calcular las medidas de dispersión para este conjunto de datos

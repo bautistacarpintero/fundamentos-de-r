@@ -389,47 +389,128 @@ a.sourceLine {
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" /><!-- --></p>
 <p>Nota: Al igual que con el histograma, no es necesario personalizar tanto los graficos. Se puede usar simplemente <code>pie(tabla$Freq)</code> y <code>boxplot(datos)</code></p>
 </div>
+<div id="grafico-de-ojivas" class="section level4">
+<h4>Grafico de ojivas</h4>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>tabla<span class="op">$</span>FrecAcu &lt;-<span class="st"> </span><span class="kw">cumsum</span>(tabla<span class="op">$</span>Frec)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>tabla<span class="op">$</span>FrecDes &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">cumsum</span>(<span class="kw">rev</span>(tabla<span class="op">$</span>Frec)))</span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co"># Selecciono las columnas que quiero imprimir</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>tabla[<span class="kw">c</span>(<span class="st">&quot;Intervalos&quot;</span>, <span class="st">&quot;Frec&quot;</span>, <span class="st">&quot;FrecAcu&quot;</span>, <span class="st">&quot;FrecDes&quot;</span>)] </span></code></pre></div>
+<pre><code>##   Intervalos Frec FrecAcu FrecDes
+## 1    [70,75)    3       3      88
+## 2    [75,80)    9      12      85
+## 3    [80,85)   30      42      76
+## 4    [85,90)   37      79      46
+## 5    [90,95)    8      87       9
+## 6   [95,100)    1      88       1</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Intervalos</th>
+<th align="right">Frec</th>
+<th align="right">FrecAcu</th>
+<th align="right">FrecDes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">[70,75)</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">88</td>
+</tr>
+<tr class="even">
+<td align="left">[75,80)</td>
+<td align="right">9</td>
+<td align="right">12</td>
+<td align="right">85</td>
+</tr>
+<tr class="odd">
+<td align="left">[80,85)</td>
+<td align="right">30</td>
+<td align="right">42</td>
+<td align="right">76</td>
+</tr>
+<tr class="even">
+<td align="left">[85,90)</td>
+<td align="right">37</td>
+<td align="right">79</td>
+<td align="right">46</td>
+</tr>
+<tr class="odd">
+<td align="left">[90,95)</td>
+<td align="right">8</td>
+<td align="right">87</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">[95,100)</td>
+<td align="right">1</td>
+<td align="right">88</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>Utilizo la funcion <code>plot(...)</code> para hacer el grafico de lineas</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">plot</span>(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="dt">x =</span> histograma<span class="op">$</span>mids, </span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="dt">y =</span> tabla<span class="op">$</span>FrecAcu, </span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>,   <span class="co"># p l b c o s S h n</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Puntaje&quot;</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Frecuencias&quot;</span>,</span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="dt">main =</span> <span class="st">&quot;Frecuencias acumuladas&quot;</span>,</span>
+<span id="cb16-8"><a href="#cb16-8"></a>  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>)</span>
+<span id="cb16-10"><a href="#cb16-10"></a></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="kw">lines</span>(</span>
+<span id="cb16-12"><a href="#cb16-12"></a>  <span class="dt">x =</span> histograma<span class="op">$</span>mids,</span>
+<span id="cb16-13"><a href="#cb16-13"></a>  <span class="dt">y =</span> tabla<span class="op">$</span>FrecDes, </span>
+<span id="cb16-14"><a href="#cb16-14"></a>  <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>,   <span class="co"># p l b c o s S h n</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a>  <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>)</span></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" /><!-- --></p>
+</div>
 <div id="medidas-de-dispersión" class="section level4">
 <h4>Medidas de dispersión</h4>
 <p>A continuación, utilizaremos las funciones antes mencionadas para calcular las medidas de dispersión para este conjunto de datos</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">min</span>(datos)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co">## [1] 72</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="kw">max</span>(datos)</span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="co">## [1] 98</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="kw">mean</span>(datos)</span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="co">## [1] 84.07955</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a></span>
-<span id="cb14-10"><a href="#cb14-10"></a><span class="kw">median</span>(datos)</span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="co">## [1] 85</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a></span>
-<span id="cb14-13"><a href="#cb14-13"></a><span class="kw">var</span>(datos)</span>
-<span id="cb14-14"><a href="#cb14-14"></a><span class="co">## [1] 23.98211</span></span>
-<span id="cb14-15"><a href="#cb14-15"></a></span>
-<span id="cb14-16"><a href="#cb14-16"></a><span class="kw">sd</span>(datos)</span>
-<span id="cb14-17"><a href="#cb14-17"></a><span class="co">## [1] 4.897153</span></span>
-<span id="cb14-18"><a href="#cb14-18"></a></span>
-<span id="cb14-19"><a href="#cb14-19"></a>cv &lt;-<span class="st"> </span><span class="kw">sd</span>(datos)<span class="op">/</span><span class="kw">mean</span>(datos)</span>
-<span id="cb14-20"><a href="#cb14-20"></a>cv<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb14-21"><a href="#cb14-21"></a><span class="co">## [1] 5.824428</span></span>
-<span id="cb14-22"><a href="#cb14-22"></a></span>
-<span id="cb14-23"><a href="#cb14-23"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.85</span>))</span>
-<span id="cb14-24"><a href="#cb14-24"></a><span class="co">## 85% </span></span>
-<span id="cb14-25"><a href="#cb14-25"></a><span class="co">##  89</span></span>
-<span id="cb14-26"><a href="#cb14-26"></a></span>
-<span id="cb14-27"><a href="#cb14-27"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>))</span>
-<span id="cb14-28"><a href="#cb14-28"></a><span class="co">##   25%   50%   75% </span></span>
-<span id="cb14-29"><a href="#cb14-29"></a><span class="co">## 80.75 85.00 87.25</span></span>
-<span id="cb14-30"><a href="#cb14-30"></a></span>
-<span id="cb14-31"><a href="#cb14-31"></a><span class="kw">summary</span>(datos)</span>
-<span id="cb14-32"><a href="#cb14-32"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb14-33"><a href="#cb14-33"></a><span class="co">##   72.00   80.75   85.00   84.08   87.25   98.00</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">min</span>(datos)</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="co">## [1] 72</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="kw">max</span>(datos)</span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="co">## [1] 98</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="kw">mean</span>(datos)</span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="co">## [1] 84.07955</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="kw">median</span>(datos)</span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="co">## [1] 85</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="kw">var</span>(datos)</span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="co">## [1] 23.98211</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="kw">sd</span>(datos)</span>
+<span id="cb17-17"><a href="#cb17-17"></a><span class="co">## [1] 4.897153</span></span>
+<span id="cb17-18"><a href="#cb17-18"></a></span>
+<span id="cb17-19"><a href="#cb17-19"></a>cv &lt;-<span class="st"> </span><span class="kw">sd</span>(datos)<span class="op">/</span><span class="kw">mean</span>(datos)</span>
+<span id="cb17-20"><a href="#cb17-20"></a>cv<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb17-21"><a href="#cb17-21"></a><span class="co">## [1] 5.824428</span></span>
+<span id="cb17-22"><a href="#cb17-22"></a></span>
+<span id="cb17-23"><a href="#cb17-23"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.85</span>))</span>
+<span id="cb17-24"><a href="#cb17-24"></a><span class="co">## 85% </span></span>
+<span id="cb17-25"><a href="#cb17-25"></a><span class="co">##  89</span></span>
+<span id="cb17-26"><a href="#cb17-26"></a></span>
+<span id="cb17-27"><a href="#cb17-27"></a><span class="kw">quantile</span>(datos, <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.50</span>,<span class="fl">0.75</span>))</span>
+<span id="cb17-28"><a href="#cb17-28"></a><span class="co">##   25%   50%   75% </span></span>
+<span id="cb17-29"><a href="#cb17-29"></a><span class="co">## 80.75 85.00 87.25</span></span>
+<span id="cb17-30"><a href="#cb17-30"></a></span>
+<span id="cb17-31"><a href="#cb17-31"></a><span class="kw">summary</span>(datos)</span>
+<span id="cb17-32"><a href="#cb17-32"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb17-33"><a href="#cb17-33"></a><span class="co">##   72.00   80.75   85.00   84.08   87.25   98.00</span></span></code></pre></div>
 </div>
 <div id="guardar-resultados" class="section level4">
 <h4>Guardar resultados</h4>
 <p>Opcionalmente pueden guardar la tabla resultante utilizando:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">write.csv</span>(tabla, <span class="st">&quot;ej11.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">write.csv</span>(tabla, <span class="st">&quot;ej11.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
