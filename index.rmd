@@ -220,8 +220,8 @@ Se puede usar simplemente `pie(tabla$Freq)` y `boxplot(datos)`
 #### Grafico de ojivas
 
 ```{r}
-tabla$FrecAcu <- cumsum(tabla$Frec)
-tabla$FrecDes <- rev(cumsum(rev(tabla$Frec)))
+tabla$FrecAcu <- cumsum(tabla$Frec)               # Frecuencia acumulada creciente
+tabla$FrecDes <- rev(cumsum(rev(tabla$Frec)))     # Frecuencia acumulada decreciente
 
 # Selecciono las columnas que quiero imprimir
 tabla[c("Intervalos", "Frec", "FrecAcu", "FrecDes")] 
@@ -255,6 +255,13 @@ lines(
 )
 ```
 
+Prestar atención a que las ojivas se cruzan en la mediana!!!
+
+```{r collapse=TRUE}
+median(datos)
+```
+
+-------
 
 #### Medidas de dispersión
 
