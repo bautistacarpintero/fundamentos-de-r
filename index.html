@@ -514,7 +514,11 @@ a.sourceLine {
 <div id="guardar-resultados" class="section level4">
 <h4>Guardar resultados</h4>
 <p>Opcionalmente pueden guardar la tabla resultante utilizando:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">write.csv</span>(tabla, <span class="st">&quot;ej11.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">write.csv</span>(tabla, <span class="st">&quot;ej11.csv&quot;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># install.packages(&quot;writexl&quot;)</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="kw">write_xlsx</span>(tabla,<span class="st">&quot;ej11.xlsx&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>

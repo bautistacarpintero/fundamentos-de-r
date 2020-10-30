@@ -297,5 +297,9 @@ Opcionalmente pueden guardar la tabla resultante utilizando:
 
 ```{r eval=FALSE}
 write.csv(tabla, "ej11.csv")
+
+# install.packages("writexl")
+library("writexl")
+write_xlsx(tabla,"ej11.xlsx")
 ```
 
