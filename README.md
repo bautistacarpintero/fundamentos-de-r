@@ -15,5 +15,5 @@ R es un lenguaje de programación interpretado es decir que no se compila para g
 
 R es un leguaje de programación funcional! Es decir, nos provee un montón de herramientas para la creación y manipulación de funciones. Pero en nuestro caso no vamos a necesitar programar nuestras propias funciones ya que R tiene lista una colección de funciones de estadística listas para utilizar 😎 👍
 
-Continuar leyendo aqui -> https://bautistacrp.github.io/Fundamentos-de-R/
+Continuar leyendo aqui -> https://bautistacarpintero.github.io/fundamentos-de-r
 
